@@ -65,7 +65,7 @@ const commit = async (destination, token) => {
 	await exec.exec('git', ['push'])
 }
 
-exports.main = () => {
+exports.run = () => {
   const source = core.getInput('source')
   const destination = core.getInput('destination')
   const github_token = core.getInput('gh_token');
