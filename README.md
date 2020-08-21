@@ -30,7 +30,7 @@ jobs:
 
 {% assign tags = site.tags | sort %}
 {"tags":[{% for tag in tags %}
-{"name":"{{ tag[0] }}","slug":"{{ tag[0] | replace: ' ', '-' }}","postcount":{{ tag[1] | size }}}{% unless forloop.last %},{% endunless %}{% endfor %}]}
+{"name":"{{ tag[0] }}","slug":"{{ tag[0] | slugify }}","postcount":{{ tag[1] | size }}}{% unless forloop.last %},{% endunless %}{% endfor %}]}
 ```
 
 
@@ -47,7 +47,7 @@ layout: default
 <hr />
 <div>
 <span class="date">{{ post.date | date: "%B %e, %Y" }}</span>
-<nav class="tags">{% assign tags = post.tags | sort %}{% for tag in tags %}<a href="/tags/{{ tag | replace:' ','-' }}/">{{ tag }}</a>{% unless forloop.last %}|{% endunless %}{% endfor %}</nav>
+<nav class="tags">{% assign tags = post.tags | sort %}{% for tag in tags %}<a href="/tags/{{ tag | slugify }}/">{{ tag }}</a>{% unless forloop.last %}|{% endunless %}{% endfor %}</nav>
 </div>
 <hr />
 <div class="sample entry">
