@@ -54,7 +54,7 @@ exports.deleteUnused = (destination, tags) => {
 const commit = async (destination, token) => {
     if (token) {
 	  await exec.exec('git', ['remote', 'set-url', 'origin',
-	    `https://${GITHUB_TOKEN}@github.com/${process.env.GITHUB_REPOSITORY}.git`])
+	    `https://${token}@github.com/${process.env.GITHUB_REPOSITORY}.git`])
 	}
 
 	await exec.exec('git', ['config', '--global', 'user.name', 'jekyll-tag-page-generator'])
