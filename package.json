@@ -1,0 +1,20 @@
+{
+  "name": "jekyll-tag-page-generator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "jekyll-tag-page-generator.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@actions/core": "^1.2.4",
+    "@actions/github": "^4.0.0"
+  },
+  "devDependencies": {
+    "jest": "^20.0.4",
+    "standard": "^10.0.2"
+  }
+}
