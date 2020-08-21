@@ -59,8 +59,8 @@ const commit = async (destination, token) => {
 	}
 
 	await exec.exec('git', ['config', '--global', 'user.name', 'jekyll-tag-page-generator'])
-	await exec.exec('git', ['add', destination + '/*.md'])
-	await exec.exec('git', ['add', '-u', destination + '/*'])
+	await exec.exec('git', ['add', destination + '*.md'])
+	await exec.exec('git', ['add', '-u', destination + '*'])
 	await exec.exec('git', ['commit', '-m', 'updating tag directory'])
 	await exec.exec('git', ['push'])
 }
