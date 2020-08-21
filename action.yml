@@ -16,5 +16,5 @@ runs:
   using: 'node12'
   main: 'index.js'
 branding:
-  icon: 'pen-tool'
+  icon: 'rss'
   color: 'blue'
