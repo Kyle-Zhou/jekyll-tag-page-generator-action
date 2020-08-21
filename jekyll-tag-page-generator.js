@@ -52,7 +52,7 @@ exports.deleteUnused = (destination, tags) => {
 	return tags
 }
 
-const commit = (destination, token) => {
+const commit = async (destination, token) => {
     if (token) {
 	  await exec.exec('git', ['remote', 'set-url', 'origin',
 	    `https://${GITHUB_TOKEN}@github.com/${process.env.GITHUB_REPOSITORY}.git`])
@@ -61,7 +61,7 @@ const commit = (destination, token) => {
 	await exec.exec('git', ['config', '--global', 'user.name', 'jekyll-tag-page-generator'])
 	await exec.exec('git', ['add', destination + '/*.md'])
 	await exec.exec('git', ['add', '-u', destination + '/*'])
-	await exec.exec('git', ['commit', '-m', 'updating tag directory])
+	await exec.exec('git', ['commit', '-m', 'updating tag directory'])
 	await exec.exec('git', ['push'])
 }
 
