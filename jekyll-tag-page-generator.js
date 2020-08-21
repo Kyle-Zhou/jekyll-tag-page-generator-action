@@ -37,15 +37,17 @@ exports.getTags = source => {
 
 exports.deleteUnused = (destination, tags) => {
 	fs.readdir(destination, (err, files) => {
-		files.forEach(file => {
-			if (tags.some(tag => tag.slug + ".md" !== file)) {
-				fs.unlink(destination + '/' + file, err => {
-					  if (err) throw err;
-					  core.info(file + ' was deleted');
-				});
+		if (files !=== undefined) {
+			files.forEach(file => {
+				if (tags.some(tag => tag.slug + ".md" !== file)) {
+					fs.unlink(destination + '/' + file, err => {
+						  if (err) throw err;
+						  core.info(file + ' was deleted');
+					});
 
-			}
-		})
+				}
+			})
+		}
 	})
 
 	return tags
