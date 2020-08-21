@@ -3,6 +3,17 @@
 
 ## How to use
 
+1. Install the [prerequisite files](https://github.com/hendrixjoseph/jekyll-tag-page-generator-action/tree/master/prerequisites) into your Jekyll blog.
+2. Add the [sample workflow](sample-workflow.yml) to your Jekyll blog directory.
+
+## Options
+
+| Option | Default Value | Description | Required |
+|--------|--------|--------|--------|
+| source | n/a | the url of the generated tags.json | true |
+| destination | n/a | Relative path to write tag pages | true |
+
+
 ## Sample workflow
 
 ```yml
@@ -24,7 +35,9 @@ jobs:
 
 ## Prerequisites
 
-```json
+### tags.json template
+
+```
 ---
 ---
 
@@ -32,6 +45,8 @@ jobs:
 {"tags":[{% for tag in tags %}
 {"name":"{{ tag[0] }}","slug":"{{ tag[0] | slugify }}","postcount":{{ tag[1] | size }}}{% unless forloop.last %},{% endunless %}{% endfor %}]}
 ```
+
+### ./layouts/tag_posts.html
 
 
 ```html
