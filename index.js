@@ -1,5 +1,5 @@
 'use strict'
 
-const generator = require('jekyll-tag-page-generator-action')
+const generator = require('./jekyll-tag-page-generator')
 
 generator.run()
