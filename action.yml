@@ -1,4 +1,4 @@
-name: 'Tag Page Generate for Jekyll Blogs'
+name: 'Tag Page Generator for Jekyll Blogs'
 description: 'Generates tag pages for Jekyll Blogs'
 inputs:
   gh_token:
