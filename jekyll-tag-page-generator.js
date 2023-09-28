@@ -54,7 +54,7 @@ exports.deleteUnused = (destination, tags) => {
 }
 
 const commit = async (destination, token) => {
-    if (token) {
+  if (token) {
 	  await exec.exec('git', ['remote', 'set-url', 'origin',
 	    `https://${token}@github.com/${process.env.GITHUB_REPOSITORY}.git`])
 	}
@@ -62,8 +62,15 @@ const commit = async (destination, token) => {
 	await exec.exec('git', ['config', '--global', 'user.name', 'jekyll-tag-page-generator'])
 	await exec.exec('git', ['add', destination + '*.md'])
 	await exec.exec('git', ['add', '-u', destination + '*'])
-	await exec.exec('git', ['commit', '-m', 'updating tag directory'])
-	await exec.exec('git', ['push'])
+
+  // Check if there are any changes to commit
+  const stagedChanges = await exec.exec('git', ['diff', '--cached']);
+  if (stagedChanges.trim() !== '') {  // If there are staged changes
+    await exec.exec('git', ['commit', '-m', 'updating tag directory']);
+    await exec.exec('git', ['push']);
+  } else {
+    console.log('No changes staged for commit.');
+  }
 }
 
 exports.run = () => {
