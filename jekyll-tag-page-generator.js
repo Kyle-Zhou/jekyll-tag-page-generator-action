@@ -96,7 +96,7 @@ const commit = async (destination, token) => {
 		const branchName = await getBranchName();
     // await exec.exec('git', ['checkout', branchName]);
 		const cmd2 = "push origin HEAD:" + branchName
-    await exec.exec('git', cmd2);
+    await exec.exec('git', ['push', 'origin', 'HEAD']);
   } else {
     console.log('No changes staged for commit.');
   }
