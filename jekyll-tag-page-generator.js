@@ -64,8 +64,20 @@ const commit = async (destination, token) => {
 	await exec.exec('git', ['add', '-u', destination + '*'])
 
   // Check if there are any changes to commit
-  const stagedChanges = await exec.exec('git', ['diff', '--cached']);
-  if (stagedChanges.trim() !== '') {  // If there are staged changes
+	let myOutput = '';
+	let myError = '';
+	const options = {};
+	options.listeners = {
+		stdout: (data) => {
+			myOutput += data.toString();
+		},
+		stderr: (data) => {
+			myError += data.toString();
+		}
+	};
+	const cmd = "git diff --cached"
+  await exec.exec(cmd, "", options);
+  if (myOutput.trim() !== "") {  // If there are staged changes
     await exec.exec('git', ['commit', '-m', 'updating tag directory']);
     await exec.exec('git', ['push']);
   } else {
