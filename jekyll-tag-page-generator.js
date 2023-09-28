@@ -53,6 +53,11 @@ exports.deleteUnused = (destination, tags) => {
 	return tags
 }
 
+const getBranchName = async () => {
+  const result = await exec.exec('git', ['rev-parse', '--abbrev-ref', 'HEAD']);
+  return result.stdout.trim();
+};
+
 const commit = async (destination, token) => {
   if (token) {
 	  await exec.exec('git', ['remote', 'set-url', 'origin',
@@ -79,6 +84,9 @@ const commit = async (destination, token) => {
   await exec.exec(cmd, "", options);
   if (myOutput.trim() !== "") {  // If there are staged changes
     await exec.exec('git', ['commit', '-m', 'updating tag directory']);
+		const branchName = await getBranchName();
+    await exec.exec('git', ['checkout', branchName]);
+
     await exec.exec('git', ['push']);
   } else {
     console.log('No changes staged for commit.');
