@@ -54,7 +54,6 @@ exports.deleteUnused = (destination, tags) => {
 }
 
 const getBranchName = async () => {
-  const result = await exec.exec('git', ['rev-parse', '--abbrev-ref', 'HEAD']);
 	let myOutput = '';
 
 	const options = {};
@@ -63,7 +62,8 @@ const getBranchName = async () => {
 			myOutput += data.toString();
 		},
 	};
-
+  const result = await exec.exec('git', ['rev-parse', '--abbrev-ref', 'HEAD'], options);
+	console.log(myOutput)
   return myOutput;
 };
 
