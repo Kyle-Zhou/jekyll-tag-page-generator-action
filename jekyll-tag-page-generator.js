@@ -79,7 +79,7 @@ const commit = async (destination, token) => {
   await exec.exec(cmd, "", options);
   if (myOutput.trim() !== "") {  // If there are staged changes
     await exec.exec('git', ['commit', '-m', 'updating tag directory']);
-    await exec.exec('git', ['push']);
+    await exec.exec('git', ['push', 'origin', 'HEAD']);
   } else {
     console.log('No changes staged for commit.');
   }
