@@ -55,7 +55,16 @@ exports.deleteUnused = (destination, tags) => {
 
 const getBranchName = async () => {
   const result = await exec.exec('git', ['rev-parse', '--abbrev-ref', 'HEAD']);
-  return result.stdout.trim();
+	let myOutput = '';
+
+	const options = {};
+	options.listeners = {
+		stdout: (data) => {
+			myOutput += data.toString();
+		},
+	};
+
+  return myOutput;
 };
 
 const commit = async (destination, token) => {
