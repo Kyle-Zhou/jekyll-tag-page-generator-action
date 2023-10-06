@@ -96,6 +96,9 @@ const commit = async (destination, token) => {
     // await exec.exec('git', ['push', 'origin', branchName]);
 		await exec.exec('git', ['push']);
 
+		// Open a pull request
+		await exec.exec('hub', ['pull-request', '-b', 'master', '-h', 'new-tags-from-action', '-m', 'Update Tag Directory']);
+
   } else {
     console.log('No changes staged for commit.');
   }
