@@ -91,7 +91,7 @@ const commit = async (destination, token) => {
 	const cmd = "git diff --cached"
   await exec.exec(cmd, "", options);
   if (myOutput.trim() !== "") {  // If there are staged changes
-    await exec.exec('git', ['commit', '-m', 'updating tag directory']);
+    // await exec.exec('git', ['commit', '-m', 'updating tag directory']);
 		// const branchName = await getBranchName();
     // // await exec.exec('git', ['push', 'origin', branchName]);
 		// await exec.exec('git', ['push']);
